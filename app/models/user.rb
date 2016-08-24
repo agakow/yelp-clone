@@ -1,6 +1,9 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  has_many :reviews
+  has_many :restaurants
+  has_many :reviewed_restaurants, through: :reviews, source: :restaurant
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
@@ -18,6 +21,10 @@ class User < ApplicationRecord
        user.email = data["email"] if user.email.blank?
      end
    end
+ end
+
+ def has_reviewed?(restaurant)
+   reviewed_restaurants.include?(restaurant)
  end
 
 end
