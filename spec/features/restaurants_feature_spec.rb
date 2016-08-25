@@ -88,15 +88,12 @@ feature 'restaurants' do
     scenario 'will not let a user edit a restaurant they did not create' do
       click_link 'Sign out'
       sign_up(email: 'test@example.com')
-      click_link 'Edit KFC'
-      expect(page).to have_content 'You did not create this restaurant entry'
-      expect(current_path).to eq '/restaurants'
+      expect(page).not_to have_link 'Edit KFC'
     end
 
     scenario 'will not let a user edit a restaurant if not signed in' do
       click_link 'Sign out'
-      click_link 'Edit KFC'
-      expect(page).to have_content 'You need to sign in or sign up before continuing'
+      expect(page).not_to have_link 'Edit KFC'
     end
 
   end
@@ -118,17 +115,13 @@ feature 'restaurants' do
     scenario 'will not let a user delete a restaurant they did not create' do
       click_link 'Sign out'
       sign_up(email: 'test@example.com')
-      click_link 'Delete KFC'
-      expect(page).to have_content 'You did not create this restaurant entry'
-      expect(current_path).to eq '/restaurants'
+      expect(page).not_to have_link 'Delete KFC'
     end
 
     scenario 'will not let a user delete a restaurant if not signed in' do
       click_link 'Sign out'
-      click_link 'Delete KFC'
-      expect(page).to have_content 'You need to sign in or sign up before continuing'
+      expect(page).not_to have_link 'Delete KFC'
     end
-
   end
 
 

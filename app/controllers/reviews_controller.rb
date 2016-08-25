@@ -34,25 +34,25 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:restaurant_id])
     @review.update(review_params)
-    redirect_to restaurants_path
+    redirect_to "/restaurants/#{params[:id]}"
   end
 
   def destroy
     @review = Review.find(params[:restaurant_id])
     @review.destroy
     flash[:notice] = 'Review deleted successfully'
-    redirect_to restaurants_path
+    redirect_to "/restaurants/#{params[:id]}"
   end
+
+  private
 
   def review_owner
     @review = Review.find(params[:restaurant_id])
     unless @review.user_id == current_user.id
       flash[:notice] = 'You did not create this review'
-      redirect_to restaurants_path
+      redirect_to "/restaurants/#{params[:id]}"
     end
   end
-
-  private
 
   def review_params
     params.require(:review).permit(:thoughts, :rating)

@@ -42,6 +42,8 @@ class RestaurantsController < ApplicationController
     redirect_to restaurants_path
   end
 
+  private
+
   def restaurant_owner
     @restaurant = Restaurant.find(params[:id])
     unless @restaurant.user_id == current_user.id
@@ -49,8 +51,6 @@ class RestaurantsController < ApplicationController
       redirect_to restaurants_path
     end
   end
-
-  private
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :description)

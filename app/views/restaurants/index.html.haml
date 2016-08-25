@@ -3,9 +3,10 @@
     %h1= link_to restaurant.name, restaurant_path(restaurant)
     %p= restaurant.description
     %div
-      = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant), styles: "margin: 10px"
-      = link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, styles: "margin: 10px"
-      = link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant), styles: "margin: 10px"
+      - if user_signed_in? && restaurant.user_id == current_user.id
+        = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant), styles: "margin: 10px"
+        = link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, styles: "margin: 10px"
+        = link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant), styles: "margin: 10px"
 
 - else
   %h1 No restaurants yet
