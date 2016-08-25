@@ -106,10 +106,9 @@ feature 'restaurants' do
     end
 
     scenario 'lets a user delete a restaurant' do
-      visit '/restaurants'
       click_link 'Delete KFC'
-      expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
+      expect(page).not_to have_content 'KFC'
     end
 
     scenario 'will not let a user delete a restaurant they did not create' do

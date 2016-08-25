@@ -14,6 +14,14 @@ feature 'reviewing' do
       click_link 'KFC'
       expect(page).to have_content 'so so'
     end
+
+    scenario 'displays an average rating for all reviews' do
+      create_review('bad', '3')
+      click_link 'Sign out'
+      sign_up(email: 'test2@test.com')
+      create_review('ok', '1')
+      expect(page).to have_content('★★☆☆☆')
+    end
   end
 
   context 'editing reviews' do
@@ -31,7 +39,7 @@ feature 'reviewing' do
       select '1', from: 'Rating'
       click_button 'Update Review'
       expect(page).to have_content 'very bad'
-      expect(page).to have_content 'Rating: 1'
+      expect(page).to have_content 'Average Rating: ★☆☆☆☆'
     end
   end
 

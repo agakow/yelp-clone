@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    %meta(charset="UTF-8")
     %link{:crossorigin => "anonymous", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :integrity => "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", :rel => "stylesheet"}
     %title YelpClone
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -13,7 +14,7 @@
       .container-fluid
         .navbar-header
           %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
+            %span.sr-only
             %span.icon-bar
           %a.navbar-brand YelpClone
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -21,7 +22,8 @@
             -if user_signed_in?
               %li.active
                 %a= current_user.email
-                %span.sr-only (current)
+                %span.sr-only
+                %li= link_to "Home", restaurants_path
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li= link_to "Sign out", destroy_user_session_path, method: :delete
