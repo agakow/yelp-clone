@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'features/helper_spec'
+require 'pry'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
