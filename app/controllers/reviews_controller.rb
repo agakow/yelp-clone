@@ -28,29 +28,29 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:restaurant_id])
+    @review = Review.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:restaurant_id])
+    @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect_to "/restaurants/#{params[:id]}"
+    redirect_to restaurants_path
   end
 
   def destroy
-    @review = Review.find(params[:restaurant_id])
+    @review = Review.find(params[:id])
     @review.destroy
     flash[:notice] = 'Review deleted successfully'
-    redirect_to "/restaurants/#{params[:id]}"
+    redirect_to restaurants_path
   end
 
   private
 
   def review_owner
-    @review = Review.find(params[:restaurant_id])
+    @review = Review.find(params[:id])
     unless @review.user_id == current_user.id
       flash[:notice] = 'You did not create this review'
-      redirect_to "/restaurants/#{params[:id]}"
+      redirect_to restaurants_path
     end
   end
 

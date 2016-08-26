@@ -38,6 +38,7 @@ feature 'reviewing' do
       fill_in 'Thoughts', with: 'very bad'
       select '1', from: 'Rating'
       click_button 'Update Review'
+      click_link 'KFC'
       expect(page).to have_content 'very bad'
       expect(page).to have_content 'Average Rating: ★☆☆☆☆'
     end
@@ -57,7 +58,7 @@ feature 'reviewing' do
       click_link 'Delete Review'
       id = Restaurant.first.id
       expect(page).to have_content 'Review deleted successfully'
-      expect(current_path).to eq "/restaurants/#{id}"
+      expect(current_path).to eq restaurants_path
     end
 
     scenario 'will not let a user delete a review they did not create' do
