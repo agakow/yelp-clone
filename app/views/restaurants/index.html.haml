@@ -3,7 +3,7 @@
     %h1= link_to restaurant.name, restaurant_path(restaurant)
     %p= restaurant.description
     %h2= star_rating(restaurant.average_rating)
-    %div= image_tag restaurant.image.url(:thumb)
+    -# %div= image_tag restaurant.image.url(:thumb)
     %br
     %div
       - if user_signed_in?

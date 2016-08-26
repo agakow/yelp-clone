@@ -1,9 +1,8 @@
 %h1= @restaurant.name
 %p= @restaurant.description
 %h2
-  Average Rating:
   = star_rating(@restaurant.average_rating)
-%dvi= image_tag @restaurant.image.url(:medium)
+-# %div= image_tag @restaurant.image.url(:medium)
 
 %h2
   Reviews
@@ -12,10 +11,9 @@
     %b Review:
     = review.thoughts
     %b Rating:
-    = review.rating
-    %p= pluralize review.endorsements.count, 'endorsement'
-    - if user_signed_in?
-      = link_to "Endorse Review", review_endorsements_path(review), method: :post
-      -if (current_user.id == review.user_id)
-        = link_to "Edit Review", edit_review_path(review)
-        = link_to "Delete Review",  review_path(review), method: :delete
+    = star_rating(review.rating)
+    %span.endorsements-count= review.endorsements.count
+    = link_to "Endorse", review_endorsements_path(review), class: 'endorsements-link'
+    -if (current_user.id == review.user_id)
+      = link_to "Edit Review", edit_review_path(review)
+      = link_to "Delete Review",  review_path(review), method: :delete
