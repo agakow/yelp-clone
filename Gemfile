@@ -33,6 +33,10 @@ gem 'devise'
 
 gem 'launchy'
 
+gem 'paperclip'
+
+gem 'aws-sdk'
+
 gem 'pry'
 
 group :development, :test do
@@ -56,4 +60,5 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-collection_matchers'
+  gem 'database_cleaner'
 end

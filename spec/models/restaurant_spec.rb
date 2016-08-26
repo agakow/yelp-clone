@@ -43,10 +43,10 @@ describe '#average_rating' do
 
   context '1 review' do
     it 'returns that rating' do
-      @restaurant = Restaurant.new(name: 'The Ivy')
-      @restaurant.save(validate: false)
-      @restaurant.reviews.create(rating: 4).save(validate: false)
-      expect(@restaurant.average_rating).to eq 4
+      restaurant = Restaurant.create(name: 'The Ivy')
+      restaurant.save(validate: false)
+      restaurant.reviews.create(rating: 4).save(validate: false)
+      expect(restaurant.average_rating).to eq 4
     end
   end
 

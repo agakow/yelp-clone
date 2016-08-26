@@ -2,7 +2,9 @@
   - @restaurants.each do |restaurant|
     %h1= link_to restaurant.name, restaurant_path(restaurant)
     %p= restaurant.description
-    = star_rating(restaurant.average_rating)
+    %h2= star_rating(restaurant.average_rating)
+    %div= image_tag restaurant.image.url(:thumb)
+    %br
     %div
       - if user_signed_in?
         = link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant)
